@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>403 | Nope</title>
+<style>
+body{
+background:#002855;
+color:#fff;
+font-family:system-ui,Arial,sans-serif;
+display:grid;
+place-items:center;
+height:100vh;
+text-align:center;
+padding:20px
+}
+h1{font-size:48px;margin-bottom:12px}
+p{opacity:.85;font-size:18px}
+a{color:#EAAA00;text-decoration:none;font-weight:700}
+</style>
+</head>
+<body>
+
+<main>
+<h1>403</h1>
+<p id="msg"></p>
+<a href="/">Go back home</a>
+</main>
+
+<script>
+const messages=[
+  "You are not supposed to be here.",
+  "This door is locked. Emotionally and physically.",
+  "Nice try. Still no.",
+  "This page is on a diet. Access removed.",
+  "If you got here by accident, same.",
+  "Authorized people only. You seem cool though."
+];
+document.getElementById("msg").textContent =
+messages[Math.floor(Math.random()*messages.length)];
+</script>
+
+</body>
+</html>

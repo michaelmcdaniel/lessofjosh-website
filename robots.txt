@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Block private / utility pages
+Disallow: /stats-control.html
+Disallow: /admin
+Disallow: /private
+
+# Block error pages from indexing
+Disallow: /404.html
+Disallow: /403.html
+
+# Sitemap location
+Sitemap: https://lessofjosh.com/sitemap.xml

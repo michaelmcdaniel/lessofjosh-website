@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="googlebot" content="noindex, nofollow" />
+
+  <title>Stats Control | Less of Josh</title>
+
+  <style>
+:root {
+  --wvu-blue: #002855;
+  --wvu-gold: #EAAA00;
+  --bg: #001a3d;
+  --text: #ffffff;
+  --muted: rgba(255, 255, 255, .75);
+  --border: rgba(234, 170, 0, .35);
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: radial-gradient(1200px 600px at 10% 0%, rgba(234, 170, 0, .12), transparent 55%),
+              radial-gradient(900px 500px at 90% 10%, rgba(0, 40, 85, .45), transparent 55%),
+              #001a3d;
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  line-height: 1.55;
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.header h1 {
+  color: var(--wvu-gold);
+  margin: 0 0 8px;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+
+.header p {
+  color: var(--muted);
+  margin: 0;
+  font-size: .95rem;
+}
+
+.card {
+  background: linear-gradient(180deg, rgba(10, 31, 63, .9), rgba(10, 31, 63, .85));
+  border: 1px solid rgba(234, 170, 0, .2);
+  border-radius: 18px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, .45);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin: 0 0 16px;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--wvu-gold);
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(234, 170, 0, .4);
+}
+
+.stats-display {
+  display: grid;
+  gap: 16px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: rgba(0, 0, 0, .3);
+  border: 1px solid rgba(234, 170, 0, .25);
+  border-radius: 12px;
+}
+
+.stat-label {
+  font-weight: 700;
+  color: var(--wvu-gold);
+  font-size: .9rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+.stat-value {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.auto-calc {
+  color: rgba(234, 170, 0, .8);
+}
+
+.instructions {
+  background: rgba(234, 170, 0, .08);
+  border: 1px solid rgba(234, 170, 0, .3);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 20px;
+}
+
+.instructions h3 {
+  margin: 0 0 12px;
+  color: var(--wvu-gold);
+  font-size: 1rem;
+}
+
+.instructions ol {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  font-size: .92rem;
+}
+
+.instructions li {
+  margin: 8px 0;
+}
+
+.instructions code {
+  background: rgba(0, 0, 0, .4);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  color: #fff;
+  font-size: .88rem;
+}
+
+.notes-section {
+  margin-top: 8px;
+}
+
+.notes-label {
+  display: block;
+  font-weight: 700;
+  color: var(--wvu-gold);
+  font-size: .9rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 8px;
+}
+
+.notes-box {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px;
+  background: rgba(0, 0, 0, .3);
+  border: 1px solid rgba(234, 170, 0, .25);
+  border-radius: 12px;
+  color: #fff;
+  font-family: inherit;
+  font-size: .95rem;
+  resize: vertical;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(234, 170, 0, .2);
+}
+
+.footer p {
+  color: var(--muted);
+  font-size: .88rem;
+  margin: 8px 0;
+}
+
+.footer a {
+  color: var(--wvu-gold);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer a:hover {
+  color: #fff;
+}
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Stats Control</h1>
+      <p>Private Admin Page</p>
+    </div>
+
+    <div class="card">
+      <h2>Current Stats</h2>
+      
+      <div class="stats-display">
+        <div class="stat-row">
+          <span class="stat-label">Start Weight</span>
+          <span class="stat-value" id="displayStart">715 lbs</span>
+        </div>
+
+        <div class="stat-row">
+          <span class="stat-label">Current Weight</span>
+          <span class="stat-value" id="displayCurrent">567.2 lbs</span>
+        </div>
+
+        <div class="stat-row">
+          <span class="stat-label">Goal Weight</span>
+          <span class="stat-value" id="displayGoal">250 lbs</span>
+        </div>
+
+        <div class="stat-row">
+          <span class="stat-label">Total Lost</span>
+          <span class="stat-value auto-calc" id="displayLost">147.8 lbs</span>
+        </div>
+
+        <div class="stat-row">
+          <span class="stat-label">Remaining</span>
+          <span class="stat-value auto-calc" id="displayRemaining">317.2 lbs</span>
+        </div>
+
+        <div class="stat-row">
+          <span class="stat-label">Progress</span>
+          <span class="stat-value auto-calc" id="displayProgress">31.8%</span>
+        </div>
+
+        <div class="stat-row">
+          <span class="stat-label">Last Updated</span>
+          <span class="stat-value" id="displayUpdated">2026-02-01</span>
+        </div>
+      </div>
+
+      <div class="notes-section">
+        <label class="notes-label" for="notesBox">Optional Notes</label>
+        <textarea id="notesBox" class="notes-box" readonly>No notes at this time.</textarea>
+      </div>
+    </div>
+
+    <div class="instructions">
+      <h3>How to Update Stats</h3>
+      <ol>
+        <li>Open this HTML file in a text editor (VS Code, Notepad++, etc.)</li>
+        <li>Find the <code>STATS</code> object in the script section near the bottom</li>
+        <li>Update the values:
+          <ul>
+            <li><code>startWeight</code>: Starting weight in pounds</li>
+            <li><code>currentWeight</code>: Current weight in pounds</li>
+            <li><code>goalWeight</code>: Goal weight in pounds</li>
+            <li><code>lastUpdated</code>: Date in YYYY-MM-DD format</li>
+            <li><code>notes</code>: Any optional notes (plain text)</li>
+          </ul>
+        </li>
+        <li>Save the file</li>
+        <li>Copy the same values to the <code>STATS</code> object in <code>index.html</code></li>
+        <li>Upload both files to your server</li>
+      </ol>
+    </div>
+
+    <div class="footer">
+      <p>This page is not indexed by search engines.</p>
+      <p>Do not link to this page publicly.</p>
+      <p><a href="index.html">← Back to Public Site</a></p>
+    </div>
+  </div>
+
+  <script>
+const STATS = {
+  startWeight: 715,
+  currentWeight: 567.2,
+  goalWeight: 250,
+  lastUpdated: "2026-02-01",
+  notes: "No notes at this time."
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  const totalLoss = STATS.startWeight - STATS.currentWeight;
+  const remaining = STATS.currentWeight - STATS.goalWeight;
+  const totalToLose = STATS.startWeight - STATS.goalWeight;
+  const progress = ((totalLoss / totalToLose) * 100).toFixed(1);
+
+  document.getElementById("displayStart").textContent = STATS.startWeight + " lbs";
+  document.getElementById("displayCurrent").textContent = STATS.currentWeight + " lbs";
+  document.getElementById("displayGoal").textContent = STATS.goalWeight + " lbs";
+  document.getElementById("displayLost").textContent = totalLoss.toFixed(1) + " lbs";
+  document.getElementById("displayRemaining").textContent = remaining.toFixed(1) + " lbs";
+  document.getElementById("displayProgress").textContent = progress + "%";
+  document.getElementById("displayUpdated").textContent = STATS.lastUpdated;
+  document.getElementById("notesBox").textContent = STATS.notes || "No notes at this time.";
+});
+  </script>
+</body>
+</html>
