@@ -1,2 +1,5 @@
 # lessofjosh-website
-Public repo for Less of Josh website. Looking for feedback on HTML, CSS, JS structure, performance, accessibility, and overall code quality.
+Public repo for Less of Josh website. 
+
+
+This was to show someone how to use vanilla vue.
